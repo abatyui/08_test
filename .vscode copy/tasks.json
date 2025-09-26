@@ -1,0 +1,129 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build with clang++ (MSYS2)",
+            "type": "shell",
+            "command": "C:\\msys64\\mingw64\\bin\\clang++.exe",
+            "args": [
+                "-std=c++17",
+                "-Wall",
+                "-Wextra",
+                "-fexec-charset=UTF-8",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}-clang.exe"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Сборка текущего файла через clang++ (MSYS2)"
+        },
+        {
+            "label": "Build with g++ (MinGW)",
+            "type": "shell",
+            "command": "C:\\MinGW\\bin\\g++.exe",
+            "args": [
+                "-std=c++17",
+                "-Wall",
+                "-Wextra",
+                "-fexec-charset=UTF-8",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}-gpp.exe"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Сборка текущего файла через g++ (MinGW)"
+        },
+        {
+            "label": "Configure Ninja (clang++)",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S",
+                "${workspaceFolder}",
+                "-B",
+                "${workspaceFolder}\\build-clang",
+                "-G",
+                "Ninja",
+                "-DCMAKE_C_COMPILER=C:\\msys64\\mingw64\\bin\\clang.exe",
+                "-DCMAKE_CXX_COMPILER=C:\\msys64\\mingw64\\bin\\clang++.exe"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "detail": "CMake configure (Ninja) для clang++ — создаёт build-clang"
+        },
+        {
+            "label": "Build Ninja (clang)",
+            "type": "shell",
+            "command": "ninja",
+            "args": [
+                "-C",
+                "${workspaceFolder}\\build-clang"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "detail": "Ninja build (clang) — собирает из build-clang"
+        },
+        {
+            "label": "Configure Ninja (g++)",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S",
+                "${workspaceFolder}",
+                "-B",
+                "${workspaceFolder}\\build-gpp",
+                "-G",
+                "Ninja",
+                "-DCMAKE_C_COMPILER=C:\\MinGW\\bin\\gcc.exe",
+                "-DCMAKE_CXX_COMPILER=C:\\MinGW\\bin\\g++.exe"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "detail": "CMake configure (Ninja) для g++ — создаёт build-gpp"
+        },
+        {
+            "label": "Build Ninja (gpp)",
+            "type": "shell",
+            "command": "ninja",
+            "args": [
+                "-C",
+                "${workspaceFolder}\\build-gpp"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "detail": "Ninja build (g++) — собирает из build-gpp"
+        }
+    ]
+}
